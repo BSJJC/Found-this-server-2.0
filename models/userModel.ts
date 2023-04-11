@@ -3,10 +3,20 @@ import { Schema, model } from "mongoose";
 interface User {
   email: string;
   password: string;
-  avaterID: string;
+  avaterID?: string;
 }
 
-const UserSchema = new Schema<User>();
+const UserSchema = new Schema<User>({
+  email: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
+  avaterID: {
+    typs: String,
+  },
+});
 
 const UserModel = model<User>("User", UserSchema);
 
