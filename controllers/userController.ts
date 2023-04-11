@@ -7,7 +7,7 @@ import UserModel from "../models/userModel";
 
 /**
  * @description          Register new user
- * @route                     POST /api/user
+ * @route                     POST /api/user/signUp
  * @access                 Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
@@ -25,6 +25,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   const user = await UserModel.create({
     email,
     password: hashedPassword,
+    avaterID: process.env.DEFAULT_USER_AVATER,
   });
 
   if (user) {

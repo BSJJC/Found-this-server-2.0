@@ -3,7 +3,8 @@ import { Schema, model } from "mongoose";
 interface User {
   email: string;
   password: string;
-  avaterID?: string;
+  avaterID: string;
+  ppp: string;
 }
 
 const UserSchema = new Schema<User>({
@@ -14,7 +15,10 @@ const UserSchema = new Schema<User>({
     type: String,
   },
   avaterID: {
-    typs: String,
+    type: String,
+  },
+  ppp: {
+    type: String,
   },
 });
 
