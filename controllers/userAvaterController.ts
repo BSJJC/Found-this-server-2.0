@@ -39,6 +39,8 @@ const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
       msg: "new avater upload done",
       id: uploadStream.id,
     });
+
+    client.close();
   } catch (err) {
     console.error(err);
     res.status(500).send("Error uploading appendix");
