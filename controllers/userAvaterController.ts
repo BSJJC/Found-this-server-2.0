@@ -77,6 +77,8 @@ const getUserAvater = asyncHandler(async (req: Request, res: Response) => {
       });
 
       res.send(base64Data);
+
+      client.close();
     });
   } catch (err) {
     console.error(err);
