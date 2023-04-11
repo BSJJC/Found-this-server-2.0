@@ -4,7 +4,6 @@ interface User {
   email: string;
   password: string;
   avaterID: string;
-  ppp: string;
 }
 
 const UserSchema = new Schema<User>({
@@ -15,9 +14,6 @@ const UserSchema = new Schema<User>({
     type: String,
   },
   avaterID: {
-    type: String,
-  },
-  ppp: {
     type: String,
   },
 });
