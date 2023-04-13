@@ -8,6 +8,7 @@ dotenv.config();
 import userAvaterRouter from "./routes/userAvaterRoute";
 import userRouter from "./routes/userRoute";
 
+
 connectDB();
 
 const port: number = (process.env.PORT as unknown as number) || 5000;
