@@ -1,16 +1,15 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 
-import topicInfoModel from "../models/topicInfoModel";
+import topicInfoModel from "../../models/topic/topicInfoModel";
 
 const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
 
 const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const { topicID, founder, title, text } = req.body;
+    const { founder, title, text } = req.body;
 
     const topicInfo = await topicInfoModel.create({
-      topicID,
       founder,
       title,
       text,

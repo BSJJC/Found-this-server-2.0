@@ -8,10 +8,10 @@ import {
   MongoClient,
   ObjectId,
 } from "mongodb";
-import generateToken from "../utils/generateToken";
+import generateToken from "../../utils/generateToken";
 
-import UserModel from "../models/userModel";
-import UserAvaterModel from "../models/userAvatersModel";
+import UserModel from "../../models/user/userModel";
+import UserAvaterModel from "../../models/user/userAvatersModel";
 
 /**
  * @description          Register new user

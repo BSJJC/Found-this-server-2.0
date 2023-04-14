@@ -9,7 +9,7 @@ import {
   MongoClient,
   ObjectId,
 } from "mongodb";
-import UserAvaterModel from "../models/userAvatersModel";
+import UserAvaterModel from "../../models/user/userAvatersModel";
 
 /**
  * @description          Upload new user avater

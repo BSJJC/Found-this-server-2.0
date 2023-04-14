@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTopicInfo } from "../controllers/topicInfoController";
+import { createTopicInfo } from "../../controllers/topic/topicInfoController";
 
 const topicRouter = Router();
 

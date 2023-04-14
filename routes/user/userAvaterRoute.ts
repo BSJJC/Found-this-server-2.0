@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   uploadUserAvater,
   getUserAvater,
-} from "../controllers/userAvaterController";
+} from "../../controllers/user/userAvaterController";
 import multer from "multer";
 
 const upload = multer();
