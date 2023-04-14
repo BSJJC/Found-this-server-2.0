@@ -7,7 +7,7 @@ dotenv.config();
 
 import userAvaterRouter from "./routes/userAvaterRoute";
 import userRouter from "./routes/userRoute";
-
+import topicInfoRouter from "./routes/topicInfoRoute";
 
 connectDB();
 
@@ -20,6 +20,7 @@ app.use(cors({ origin: "*" }));
 
 app.use("/api/userAvaters", userAvaterRouter);
 app.use("/api/user", userRouter);
+app.use("/api/topic/info", topicInfoRouter);
 
 app.listen(port, () => {
   console.log(
