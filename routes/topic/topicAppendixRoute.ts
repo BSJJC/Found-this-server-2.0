@@ -1,8 +1,10 @@
 import { Router } from "express";
+
 import {
-  uploadUserAvater,
-  getUserAvater,
-} from "../../controllers/user/userAvaterController";
+  uploadTopicAppendix,
+  downloadTopicAppendix,
+} from "../../controllers/topic/topicApeendixController";
+
 import multer from "multer";
 
 const upload = multer();
@@ -10,9 +12,9 @@ const userTopicAppendixRouter = Router();
 
 userTopicAppendixRouter.post(
   "/upload",
-  upload.single("userAppendixs"),
-  uploadUserAvater
+  upload.array("userAppendixs"),
+  uploadTopicAppendix
 );
-userTopicAppendixRouter.get("/:id", getUserAvater);
+userTopicAppendixRouter.get("/download/:id", downloadTopicAppendix);
 
 export default userTopicAppendixRouter;

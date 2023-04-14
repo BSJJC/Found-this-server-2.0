@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: "*" }));
 
-
 app.use("/api/userAvaters", userAvaterRouter);
 
 app.use("/api/user", userRouter);

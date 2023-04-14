@@ -3,8 +3,18 @@ import asyncHandler from "express-async-handler";
 
 import topicInfoModel from "../../models/topic/topicInfoModel";
 
+/**
+ * @description                     Get topic info
+ * @route                                 GET /api/topic/info
+ * @access                              Public
+ */
 const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
 
+/**
+ * @description            Create new topic info
+ * @route                       POST /api/topic/info
+ * @access                    Public
+ */
 const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
     const { founder, title, text } = req.body;
