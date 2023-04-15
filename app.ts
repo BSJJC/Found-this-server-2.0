@@ -7,7 +7,9 @@ dotenv.config();
 
 import userAvaterRouter from "./routes/user/userAvaterRoute";
 import userRouter from "./routes/user/userRoute";
+
 import topicInfoRouter from "./routes/topic/topicInfoRoute";
+import topicAppendixRouter from "./routes/topic/topicAppendixRoute";
 
 connectDB();
 
@@ -19,9 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: "*" }));
 
 app.use("/api/userAvaters", userAvaterRouter);
-
 app.use("/api/user", userRouter);
+
 app.use("/api/topic/info", topicInfoRouter);
+app.use("/api/topic/appendix", topicAppendixRouter);
 
 app.listen(port, () => {
   console.log(

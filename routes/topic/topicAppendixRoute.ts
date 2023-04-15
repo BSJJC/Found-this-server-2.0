@@ -8,13 +8,13 @@ import {
 import multer from "multer";
 
 const upload = multer();
-const userTopicAppendixRouter = Router();
+const topicAppendixRouter = Router();
 
-userTopicAppendixRouter.post(
+topicAppendixRouter.post(
   "/upload",
-  upload.array("userAppendixs"),
+  upload.single("userAppendix"),
   uploadTopicAppendix
 );
-userTopicAppendixRouter.get("/download/:id", downloadTopicAppendix);
+topicAppendixRouter.get("/download/:id", downloadTopicAppendix);
 
-export default userTopicAppendixRouter;
+export default topicAppendixRouter;

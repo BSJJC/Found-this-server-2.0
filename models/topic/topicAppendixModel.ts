@@ -1,15 +1,26 @@
 import { Schema, model } from "mongoose";
 
-interface topicInfoModel {
-  founder: string;
-  title: string;
-  text: string;
-  isDeleted: boolean;
+interface topicAppendixModel {
+  filename: String;
+  originalname: String;
+  mimetype: String;
 }
 
-const topicInfoModelSchema = new Schema<topicInfoModel>({
+const topicAppendixModelSchema = new Schema<topicAppendixModel>({
+  filename: {
+    type: String,
+  },
+  originalname: {
+    type: String,
+  },
+  mimetype: {
+    type: String,
+  },
 });
 
-const topicInfoModel = model<topicInfoModel>("topicInfo", topicInfoModelSchema);
+const topicAppendixModel = model<topicAppendixModel>(
+  "topicAppendix",
+  topicAppendixModelSchema
+);
 
-export default topicInfoModel;
+export default topicAppendixModel;
