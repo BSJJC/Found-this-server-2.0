@@ -1,8 +1,22 @@
 import { Schema, model } from "mongoose";
 
-interface UserAvater {}
+interface UserAvater {
+  filename: String;
+  contentType: String;
+  imageBase64: String;
+}
 
-const UserAvaterSchema = new Schema<UserAvater>();
+const UserAvaterSchema = new Schema<UserAvater>({
+  filename: {
+    type: String,
+  },
+  contentType: {
+    type: String,
+  },
+  imageBase64: {
+    type: String,
+  },
+});
 
 const UserAvaterModel = model<UserAvater>("UserAvaters", UserAvaterSchema);
 

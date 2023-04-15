@@ -18,29 +18,19 @@ import UserAvaterModel from "../../models/user/userAvatersModel";
  */
 const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const client: MongoClient = await MongoClient.connect(
-      process.env.MONGO_URI as string
-    );
-    const db: Db = client.db();
-    const fileBucket: GridFSBucket = new GridFSBucket(db, {
-      bucketName: "userAvaters",
+    if (!req.file) {
+      throw new Error("Error uploading appendix");
+    }
+
+    const avater = new UserAvaterModel({
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
+      imageBase64: req.file.buffer.toString("base64"),
     });
 
-    const file: Express.Multer.File = req.file as Express.Multer.File;
-    const buffer: Buffer = file.buffer;
+    const savedAvater = await avater.save();
 
-    const uploadStream: GridFSBucketWriteStream = fileBucket.openUploadStream(
-      file.originalname
-    );
-
-    uploadStream.end(buffer);
-
-    res.json({
-      msg: "new avater upload done",
-      id: uploadStream.id,
-    });
-
-    client.close();
+    res.send(savedAvater._id);
   } catch (err) {
     console.error(err);
     res.status(500).send("Error uploading appendix");
@@ -54,34 +44,14 @@ const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
  */
 const getUserAvater = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const client: MongoClient = await MongoClient.connect(
-      process.env.MONGO_URI as string
-    );
+    const avater = await UserAvaterModel.findById(req.params.id);
 
-    const db: Db = client.db();
-    const fileBucket: GridFSBucket = new GridFSBucket(db, {
-      bucketName: "userAvaters",
-    });
-    const fileId: ObjectId = new ObjectId(req.params.id);
-    const downloadStream: GridFSBucketReadStream =
-      fileBucket.openDownloadStream(fileId);
+    if (!avater) {
+      res.status(404).send("Avater not found");
+    }
 
-    let fileData = Buffer.from([]);
-
-    downloadStream.on("data", (chunk) => {
-      fileData = Buffer.concat([fileData, chunk]);
-    });
-
-    downloadStream.on("end", () => {
-      const base64Data = fileData.toString("base64");
-      res.set({
-        "Content-Type": "application/octet-stream",
-      });
-
-      res.send(base64Data);
-
-      client.close();
-    });
+    res.set("Content-Type", avater!.contentType.toString());
+    res.send(Buffer.from(avater!.imageBase64, "base64"));
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetch appendix");
