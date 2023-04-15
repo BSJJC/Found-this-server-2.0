@@ -22,6 +22,6 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   },
 });
 
-const topicInfoModel = model<topicInfoModel>("topicInfo", topicInfoModelSchema);
+const topicInfoModel = model<topicInfoModel>("TopicInfo", topicInfoModelSchema);
 
 export default topicInfoModel;

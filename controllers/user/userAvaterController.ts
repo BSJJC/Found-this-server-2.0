@@ -17,7 +17,7 @@ import UserAvaterModel from "../../models/user/userAvatersModel";
  * @access                 Public
  */
 const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
-  try { 
+  try {
     const client: MongoClient = await MongoClient.connect(
       process.env.MONGO_URI as string
     );

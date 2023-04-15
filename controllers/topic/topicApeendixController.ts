@@ -24,22 +24,19 @@ const uploadTopicAppendix = asyncHandler(
         bucketName: "topicAppendix",
       });
 
-      console.log(req.file);
+      const file: Express.Multer.File = req.file as Express.Multer.File;
+      const buffer: Buffer = file.buffer;
 
-      res.send("OK");
+      const uploadStream: GridFSBucketWriteStream = fileBucket.openUploadStream(
+        file.originalname
+      );
 
-      // const buffer: Buffer = files.buffer;
+      uploadStream.end(buffer);
 
-      // const uploadStream: GridFSBucketWriteStream = fileBucket.openUploadStream(
-      //   files.originalname
-      // );
-
-      // uploadStream.end(buffer);
-
-      // res.json({
-      //   msg: "new avater upload done",
-      //   id: uploadStream.id,
-      // });
+      res.json({
+        msg: "new topic appendix done",
+        id: uploadStream.id,
+      });
 
       client.close();
     } catch (err) {
