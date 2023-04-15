@@ -1,11 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import {
-  Db,
-  GridFSBucket,
-  GridFSBucketWriteStream,
-  MongoClient,
-} from "mongodb";
+
 import topicAppendixModel from "../../models/topic/topicAppendixModel";
 
 /**
@@ -16,29 +11,19 @@ import topicAppendixModel from "../../models/topic/topicAppendixModel";
 const uploadTopicAppendix = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const client: MongoClient = await MongoClient.connect(
-        process.env.MONGO_URI as string
-      );
-      const db: Db = client.db();
-      const fileBucket: GridFSBucket = new GridFSBucket(db, {
-        bucketName: "topicAppendix",
+      if (!req.file) {
+        throw new Error("Error uploading appendix");
+      }
+
+      const avater = new topicAppendixModel({
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        imageBase64: req.file.buffer.toString("base64"),
       });
 
-      const file: Express.Multer.File = req.file as Express.Multer.File;
-      const buffer: Buffer = file.buffer;
+      const savedAvater = await avater.save();
 
-      const uploadStream: GridFSBucketWriteStream = fileBucket.openUploadStream(
-        file.originalname
-      );
-
-      uploadStream.end(buffer);
-
-      res.json({
-        msg: "new topic appendix done",
-        id: uploadStream.id,
-      });
-
-      client.close();
+      res.status(200).send(savedAvater._id);
     } catch (err) {
       console.error(err);
       res.status(500).send("Error uploading appendix");

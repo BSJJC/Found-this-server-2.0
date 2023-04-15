@@ -1,14 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 
-import {
-  Db,
-  GridFSBucket,
-  GridFSBucketReadStream,
-  GridFSBucketWriteStream,
-  MongoClient,
-  ObjectId,
-} from "mongodb";
 import UserAvaterModel from "../../models/user/userAvatersModel";
 
 /**
