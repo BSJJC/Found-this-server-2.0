@@ -11,6 +11,10 @@ import topicAppendixModel from "../../models/topic/topicAppendixModel";
 const uploadTopicAppendix = asyncHandler(
   async (req: Request, res: Response) => {
     try {
+      // if (Math.random() > 0.5) {
+      //   throw new Error("TEST");
+      // }
+
       if (!req.file) {
         throw new Error("Error uploading appendix");
       }
@@ -23,8 +27,13 @@ const uploadTopicAppendix = asyncHandler(
 
       res.status(200).send(appendix._id);
     } catch (err) {
-      console.error(err);
-      res.status(500).send("Error uploading appendix");
+      console.log(err);
+
+      if (err instanceof Error) {
+        res.status(500).send(`Error uploading appendix: ${err.message}`);
+      } else {
+        res.status(500).send("Error uploading appendix");
+      }
     }
   }
 );
