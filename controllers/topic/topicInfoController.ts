@@ -17,12 +17,15 @@ const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
  */
 const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const { founder, title, text } = req.body;
+    const { founder, title, text, appendixIDs } = req.body;
+
+    console.log(appendixIDs);
 
     const topicInfo = await topicInfoModel.create({
       founder,
       title,
       text,
+      appendixIDs,
       isDeleted: false,
     });
 

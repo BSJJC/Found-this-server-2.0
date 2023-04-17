@@ -4,6 +4,7 @@ interface topicInfoModel {
   founder: string;
   title: string;
   text: string;
+  appendixIDs: Schema.Types.Array;
   isDeleted: boolean;
 }
 
@@ -16,6 +17,9 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   },
   text: {
     type: String,
+  },
+  appendixIDs: {
+    type: [String],
   },
   isDeleted: {
     type: Boolean,

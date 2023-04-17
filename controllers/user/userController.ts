@@ -60,6 +60,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).send({
+      email: user.email,
       userAvaterUrl: user.avaterID,
     });
   } else {

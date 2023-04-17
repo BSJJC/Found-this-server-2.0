@@ -15,15 +15,13 @@ const uploadTopicAppendix = asyncHandler(
         throw new Error("Error uploading appendix");
       }
 
-      const avater = new topicAppendixModel({
+      const appendix = await topicAppendixModel.create({
         filename: req.file.originalname,
         contentType: req.file.mimetype,
         imageBase64: req.file.buffer.toString("base64"),
       });
 
-      const savedAvater = await avater.save();
-
-      res.status(200).send(savedAvater._id);
+      res.status(200).send(appendix._id);
     } catch (err) {
       console.error(err);
       res.status(500).send("Error uploading appendix");
