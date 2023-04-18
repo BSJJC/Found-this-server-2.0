@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 interface topicBg {
   filename: String;
   contentType: String;
-  imageBase64: String;
+  Base64String: String;
 }
 
 const topicBgModelSchema = new Schema<topicBg>({
@@ -13,7 +13,7 @@ const topicBgModelSchema = new Schema<topicBg>({
   contentType: {
     type: String,
   },
-  imageBase64: {
+  Base64String: {
     type: String,
   },
 });

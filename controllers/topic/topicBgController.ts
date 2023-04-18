@@ -17,7 +17,7 @@ const uploadTopicBg = asyncHandler(async (req: Request, res: Response) => {
     const bg = await topicBgModel.create({
       filename: req.file.originalname,
       contentType: req.file.mimetype,
-      imageBase64: req.file.buffer.toString("base64"),
+      Base64String: req.file.buffer.toString("base64"),
     });
 
     res.status(200).send(bg._id);
@@ -43,7 +43,7 @@ const downloadTopicBg = asyncHandler(async (req: Request, res: Response) => {
     }
 
     res.set("Content-Type", bg!.contentType.toString());
-    res.send(Buffer.from(bg!.imageBase64, "base64"));
+    res.send(Buffer.from(bg!.Base64String, "base64"));
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetch topic background");

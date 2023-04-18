@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import iconv from "iconv-lite";
 
 import topicAppendixModel from "../../models/topic/topicAppendixModel";
 
@@ -26,7 +25,7 @@ const uploadTopicAppendix = asyncHandler(
           req.file.originalname.split(".").pop() as string
         ),
         contentType: req.file.mimetype,
-        imageBase64: req.file.buffer.toString("base64"),
+        Base64String: req.file.buffer.toString("base64"),
       });
 
       res.status(200).send(appendix._id);

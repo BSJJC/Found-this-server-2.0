@@ -17,7 +17,7 @@ const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
     const avater = new UserAvaterModel({
       filename: req.file.originalname,
       contentType: req.file.mimetype,
-      imageBase64: req.file.buffer.toString("base64"),
+      Base64String: req.file.buffer.toString("base64"),
     });
 
     const savedAvater = await avater.save();
@@ -43,7 +43,7 @@ const getUserAvater = asyncHandler(async (req: Request, res: Response) => {
     }
 
     res.set("Content-Type", avater!.contentType.toString());
-    res.send(Buffer.from(avater!.imageBase64, "base64"));
+    res.send(Buffer.from(avater!.Base64String, "base64"));
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetch appendix");

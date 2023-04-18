@@ -5,13 +5,6 @@ import topicInfoModel from "../../models/topic/topicInfoModel";
 import generateRandomTopicBd from "../../config/randomTopicBg";
 
 /**
- * @description                     Get topic info
- * @route                                 GET /api/topic/info
- * @access                              Public
- */
-const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
-
-/**
  * @description            Create new topic info
  * @route                       POST /api/topic/info
  * @access                    Public
@@ -35,5 +28,12 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
     throw new Error("error when create new topic");
   }
 });
+
+/**
+ * @description                     Get topic info
+ * @route                                 GET /api/topic/info/get/:id
+ * @access                              Public
+ */
+const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
 
 export { createTopicInfo };

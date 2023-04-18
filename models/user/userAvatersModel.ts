@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 interface UserAvater {
   filename: String;
   contentType: String;
-  imageBase64: String;
+  Base64String: String;
 }
 
 const UserAvaterSchema = new Schema<UserAvater>({
@@ -13,7 +13,7 @@ const UserAvaterSchema = new Schema<UserAvater>({
   contentType: {
     type: String,
   },
-  imageBase64: {
+  Base64String: {
     type: String,
   },
 });
