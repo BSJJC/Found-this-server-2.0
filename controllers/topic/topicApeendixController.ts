@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
+import iconv from "iconv-lite";
 
 import topicAppendixModel from "../../models/topic/topicAppendixModel";
 
@@ -20,7 +21,10 @@ const uploadTopicAppendix = asyncHandler(
       }
 
       const appendix = await topicAppendixModel.create({
-        filename: req.file.originalname,
+        filename: decodeURIComponent(req.file.originalname),
+        extendName: decodeURIComponent(
+          req.file.originalname.split(".").pop() as string
+        ),
         contentType: req.file.mimetype,
         imageBase64: req.file.buffer.toString("base64"),
       });
@@ -45,7 +49,17 @@ const uploadTopicAppendix = asyncHandler(
  */
 const downloadTopicAppendix = asyncHandler(
   async (req: Request, res: Response) => {
-    res.status(200).send("user appendixs downloaded");
+    const id = req.params.id;
+
+    const appendix = await topicAppendixModel.findById(id);
+
+    if (!appendix) {
+      res.status(404).send("Appendix not found");
+      return;
+    }
+
+    res.set({ "Content-Type": appendix.contentType });
+    res.send(appendix);
   }
 );
 

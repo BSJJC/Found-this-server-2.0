@@ -39,6 +39,7 @@ const downloadTopicBg = asyncHandler(async (req: Request, res: Response) => {
 
     if (!bg) {
       res.status(404).send("Topic background not found");
+      return;
     }
 
     res.set("Content-Type", bg!.contentType.toString());

@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 interface topicAppendix {
   filename: String;
   contentType: String;
+  extendName: String;
   imageBase64: String;
 }
 
@@ -11,6 +12,9 @@ const topicAppendixModelSchema = new Schema<topicAppendix>({
     type: String,
   },
   contentType: {
+    type: String,
+  },
+  extendName: {
     type: String,
   },
   imageBase64: {
