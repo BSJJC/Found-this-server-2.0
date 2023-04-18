@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 
 import topicInfoModel from "../../models/topic/topicInfoModel";
+import generateRandomTopicBd from "../../config/randomTopicBg";
 
 /**
  * @description                     Get topic info
@@ -24,6 +25,7 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
       title,
       text,
       appendixIDs,
+      bgID: generateRandomTopicBd(),
       isDeleted: false,
     });
 
