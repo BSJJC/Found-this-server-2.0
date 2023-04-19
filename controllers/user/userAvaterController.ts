@@ -40,6 +40,7 @@ const getUserAvater = asyncHandler(async (req: Request, res: Response) => {
 
     if (!avater) {
       res.status(404).send("Avater not found");
+      return;
     }
 
     res.set("Content-Type", avater!.contentType.toString());

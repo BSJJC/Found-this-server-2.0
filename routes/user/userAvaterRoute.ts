@@ -13,6 +13,6 @@ userAvaterRouter.post(
   upload.single("userAvaters"),
   uploadUserAvater
 );
-userAvaterRouter.get("/:id", getUserAvater);
+userAvaterRouter.get("/get/:id", getUserAvater);
 
 export default userAvaterRouter;

@@ -34,6 +34,10 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
  * @route                                 GET /api/topic/info/get/:id
  * @access                              Public
  */
-const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {});
+const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {
+  const topics = await topicInfoModel.find({ _id: -1 }).limit(6);
 
-export { createTopicInfo };
+  res.status(200).send(topics);
+});
+
+export { createTopicInfo, getTopicInfo };
