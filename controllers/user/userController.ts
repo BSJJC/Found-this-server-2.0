@@ -39,7 +39,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   if (user) {
     res.status(200).json({
       email: user.email,
-      userAvaterUrl: `http://localhost:5000/api/userAvaters/${user.avaterID}`,
+      userAvaterUrl: user.avaterID,
       token: generateToken(user.id, 1, "d"),
     });
   } else {
