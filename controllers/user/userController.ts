@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   if (user) {
     res.status(200).json({
       email: user.email,
-      userAvaterUrl: user.avaterID,
+      userAvaterID: user.avaterID,
       token: generateToken(user.id, 1, "d"),
     });
   } else {
@@ -62,7 +62,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).send({
       email: user.email,
-      userAvaterUrl: user.avaterID,
+      userAvaterID: user.avaterID,
     });
   } else {
     res.status(400).json({ reason: "Email or password wrong" });
