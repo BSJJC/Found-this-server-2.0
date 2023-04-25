@@ -1,17 +1,9 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
-import {
-  Db,
-  GridFSBucket,
-  GridFSBucketReadStream,
-  MongoClient,
-  ObjectId,
-} from "mongodb";
 import generateToken from "../../utils/generateToken";
 
 import UserModel from "../../models/user/userModel";
-import UserAvaterModel from "../../models/user/userAvatersModel";
 
 /**
  * @description          Register new user
@@ -19,7 +11,7 @@ import UserAvaterModel from "../../models/user/userAvatersModel";
  * @access                 Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, userName, password } = req.body;
 
   const exists = await UserModel.findOne({ email });
   if (exists) {
@@ -32,11 +24,11 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
 
   const user = await UserModel.create({
     email,
+    userName,
     password: hashedPassword,
     avaterID: process.env.DEFAULT_USER_AVATER,
   });
 
-  
   if (user) {
     res.status(200).json({
       email: user.email,
@@ -62,6 +54,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).send({
       email: user.email,
+      userName: user.userName,
       userAvaterID: user.avaterID,
     });
   } else {
@@ -70,21 +63,4 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
   }
 });
 
-/**
- * @desc            Get administrator data
- * @route           GET /api/administrator/administratorData
- * @access        Public
- */
-const getUserData = asyncHandler(async (req: Request, res: Response) => {
-  //@ts-ignore
-  const { email, password } = await UserModel.findById(
-    req.body.administrator.id
-  );
-
-  res.status(200).json({
-    email,
-    password,
-  });
-});
-
-export { registerUser, loginUser, getUserData };
+export { registerUser, loginUser };

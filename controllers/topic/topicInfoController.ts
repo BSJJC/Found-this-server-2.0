@@ -11,12 +11,21 @@ import generateRandomTopicBd from "../../config/randomTopicBg";
  */
 const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const { founder, founderAvaterID, title, text, appendixIDs } = req.body;
+    const {
+      founder,
+      founderUserName,
+      founderAvaterID,
+      title,
+      text,
+      appendixIDs,
+    } = req.body;
 
-    console.log(founderAvaterID);
+    console.log(founderUserName);
 
     const topicInfo = await topicInfoModel.create({
       founder,
+      founderUserName,
+      founderAvaterID,
       title,
       text,
       appendixIDs,
