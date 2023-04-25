@@ -20,8 +20,6 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
       appendixIDs,
     } = req.body;
 
-    console.log(founderUserName);
-
     const topicInfo = await topicInfoModel.create({
       founder,
       founderUserName,
