@@ -24,6 +24,7 @@ const protect = asyncHandler(async (req: Request, res: Response, next) => {
       const administrator = await administratorModel
         .findById((decoded as jwt.JwtPayload).id)
         .select("-password");
+        
 
       req.body.administrator = administrator;
 
