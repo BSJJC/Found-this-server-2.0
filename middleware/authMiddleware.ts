@@ -20,6 +20,7 @@ const protect = asyncHandler(async (req: Request, res: Response, next) => {
         token,
         process.env.JWT_SECRET as string
       );
+      
 
       const administrator = await administratorModel
         .findById((decoded as jwt.JwtPayload).id)
