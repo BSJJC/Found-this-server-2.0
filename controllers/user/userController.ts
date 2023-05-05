@@ -29,11 +29,13 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
     avaterID: process.env.DEFAULT_USER_AVATER,
   });
 
+  console.log(user);
+
+
   if (user) {
     res.status(200).json({
       email: user.email,
       userAvaterID: user.avaterID,
-      token: generateToken(user.id, 1, "d"),
     });
   } else {
     res.status(400);

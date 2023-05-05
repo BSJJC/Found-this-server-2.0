@@ -11,7 +11,7 @@ import UserAvaterModel from "../../models/user/userAvatersModel";
 const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
   try {
     if (!req.file) {
-      throw new Error("Error uploading appendix");
+      throw new Error("Error uploading user avater");
     }
 
     const avater = new UserAvaterModel({
@@ -25,7 +25,7 @@ const uploadUserAvater = asyncHandler(async (req: Request, res: Response) => {
     res.send(savedAvater._id);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error uploading appendix");
+    res.status(500).send("Error uploading user avater");
   }
 });
 
