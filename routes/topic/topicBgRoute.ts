@@ -13,3 +13,4 @@ topicBgRouter.post("/upload", upload.single("topicBg"), uploadTopicBg);
 topicBgRouter.get("/download/:id", downloadTopicBg);
 
 export default topicBgRouter;
+
