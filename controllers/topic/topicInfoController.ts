@@ -13,7 +13,7 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
     const {
       founder,
-      founderUserName,
+      founderName,
       founderAvaterID,
       title,
       text,
@@ -22,7 +22,7 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
 
     const topicInfo = await topicInfoModel.create({
       founder,
-      founderUserName,
+      founderName,
       founderAvaterID,
       title,
       text,

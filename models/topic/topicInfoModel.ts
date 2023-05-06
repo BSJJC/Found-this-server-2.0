@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 interface topicInfoModel {
   founder: string;
-  founderUserName: string;
+  founderName: string;
   founderAvaterID: string;
   title: string;
   text: string;
@@ -15,7 +15,7 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   founder: {
     type: String,
   },
-  founderUserName: {
+  founderName: {
     type: String,
   },
   founderAvaterID: {
