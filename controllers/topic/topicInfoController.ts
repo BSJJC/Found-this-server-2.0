@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 
 import topicInfoModel from "../../models/topic/topicInfoModel";
 import generateRandomTopicBd from "../../config/randomTopicBg";
+import { ObjectId } from "mongodb";
 
 /**
  * @description            Create new topic info
@@ -49,4 +50,31 @@ const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   res.status(200).send(topics);
 });
 
-export { createTopicInfo, getTopicInfo };
+/**
+ * @description                     Like topic
+ * @route                                 UPDATE /api/topic/info/like
+ * @access                              Public
+ */
+const likeTopic = asyncHandler(async (req: Request, res: Response) => {
+  const { topicID } = req.body;
+
+  try {
+    const topic = await topicInfoModel.findOneAndUpdate(
+      { _id: new ObjectId(topicID) },
+      { $inc: { likes: 1 } },
+      { new: true }
+    )
+
+    if (!topic) {
+      res.status(404).json({ error: 'Topic not found' });
+      return
+    }
+
+    res.json({ message: 'Topic liked', topic });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+})
+
+export { createTopicInfo, getTopicInfo, likeTopic };

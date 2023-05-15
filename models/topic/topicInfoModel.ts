@@ -1,5 +1,25 @@
 import { Schema, model } from "mongoose";
 
+type repliesOfReply = {
+  userID: string,
+  userAvaterID: string,
+  date: Date,
+  replyText: string,
+  likes: number,
+  dislikes: number,
+}
+
+
+type replyType = {
+  userID: string,
+  userAvaterID: string,
+  date: Date,
+  replyText: string,
+  likes: number,
+  dislikes: number,
+  repliesOfReply: Array<repliesOfReply>
+}
+
 interface topicInfoModel {
   founder: string;
   founderName: string;
@@ -9,6 +29,11 @@ interface topicInfoModel {
   bgID: string;
   appendixIDs: Schema.Types.Array;
   isDeleted: boolean;
+
+  likes: number;
+  dislikes: number;
+  views: number;
+  replies?: Array<replyType>
 }
 
 const topicInfoModelSchema = new Schema<topicInfoModel>({
@@ -36,6 +61,21 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   isDeleted: {
     type: Boolean,
   },
+  likes: {
+    default: 0,
+    type: Number
+  },
+  dislikes: {
+    default: 0,
+    type: Number
+  },
+  views: {
+    default: 0,
+    type: Number
+  },
+  replies: {
+    type: Array<replyType>
+  }
 });
 
 const topicInfoModel = model<topicInfoModel>("TopicInfo", topicInfoModelSchema);
