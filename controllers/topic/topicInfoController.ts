@@ -77,4 +77,31 @@ const likeTopic = asyncHandler(async (req: Request, res: Response) => {
   }
 })
 
-export { createTopicInfo, getTopicInfo, likeTopic };
+/**
+ * @description                     Dislike topic
+ * @route                                 UPDATE /api/topic/info/dislike
+ * @access                              Public
+ */
+const disLikeTopic = asyncHandler(async (req: Request, res: Response) => {
+  const { topicID } = req.body;
+
+  try {
+    const topic = await topicInfoModel.findOneAndUpdate(
+      { _id: new ObjectId(topicID) },
+      { $inc: { likes: -1 } },
+      { new: true }
+    )
+
+    if (!topic) {
+      res.status(404).json({ error: 'Topic not found' });
+      return
+    }
+
+    res.json({ message: 'Topic disliked', topic });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+})
+
+export { createTopicInfo, getTopicInfo, likeTopic, disLikeTopic };

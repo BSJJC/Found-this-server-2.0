@@ -63,14 +63,17 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   },
   likes: {
     default: 0,
+    min: 0,
     type: Number
   },
   dislikes: {
     default: 0,
+    min: 0,
     type: Number
   },
   views: {
     default: 0,
+    min: 0,
     type: Number
   },
   replies: {
