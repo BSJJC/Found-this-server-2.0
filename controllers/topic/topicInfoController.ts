@@ -70,7 +70,7 @@ const likeTopic = asyncHandler(async (req: Request, res: Response) => {
       return
     }
 
-    res.json({ message: 'Topic liked', topic });
+    res.json({ message: 'Topic liked' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });
@@ -97,7 +97,7 @@ const disLikeTopic = asyncHandler(async (req: Request, res: Response) => {
       return
     }
 
-    res.json({ message: 'Topic disliked', topic });
+    res.json({ message: 'Topic disliked' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Server error' });

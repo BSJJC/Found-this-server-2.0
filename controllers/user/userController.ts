@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
-import generateToken from "../../utils/generateToken";
+// import generateToken from "../../utils/generateToken";
 
 import UserModel from "../../models/user/userModel";
 
