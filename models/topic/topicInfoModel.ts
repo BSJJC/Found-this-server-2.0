@@ -77,7 +77,9 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
     type: Number
   },
   replies: {
-    type: Array<replyType>
+    type: Number,
+    default: 0,
+    min: 0
   }
 });
 
