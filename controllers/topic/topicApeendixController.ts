@@ -11,9 +11,9 @@ import topicAppendixModel from "../../models/topic/topicAppendixModel";
 const uploadTopicAppendix = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      // if (Math.random() > 0.5) {
-      //   throw new Error("TEST");
-      // }
+      if (Math.random() > 1) {
+        throw new Error("TEST ERROR");
+      }
 
       if (!req.file) {
         throw new Error("Error uploading appendix");
