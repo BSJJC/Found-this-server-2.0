@@ -9,7 +9,7 @@ import userAvaterRouter from "./routes/user/userAvaterRoute";
 import userRouter from "./routes/user/userRoute";
 
 import topicInfoRouter from "./routes/topic/topicInfoRoute";
-import topicAppendixRouter from "./routes/topic/topicAppendixRoute";
+import topicFileRouter from "./routes/topic/topicFileRoute";
 import topicBgRouter from "./routes/topic/topicBgRoute";
 
 connectDB();
@@ -25,7 +25,7 @@ app.use("/api/userAvaters", userAvaterRouter);
 app.use("/api/user", userRouter);
 
 app.use("/api/topic/info", topicInfoRouter);
-app.use("/api/topic/appendix", topicAppendixRouter);
+app.use("/api/topic/file", topicFileRouter);
 app.use("/api/topic/bg", topicBgRouter);
 
 app.listen(port, () => {

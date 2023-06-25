@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
-interface topicAppendix {
+interface topicFile {
   filename: String;
   contentType: String;
   extendName: String;
   imageBase64: String;
 }
 
-const topicAppendixModelSchema = new Schema<topicAppendix>({
+const topicFileModelSchema = new Schema<topicFile>({
   filename: {
     type: String,
   },
@@ -22,9 +22,9 @@ const topicAppendixModelSchema = new Schema<topicAppendix>({
   },
 });
 
-const topicAppendixModel = model<topicAppendix>(
-  "TopicAppendix",
-  topicAppendixModelSchema
+const topicFileModel = model<topicFile>(
+  "TopicFile",
+  topicFileModelSchema
 );
 
-export default topicAppendixModel;
+export default topicFileModel;
