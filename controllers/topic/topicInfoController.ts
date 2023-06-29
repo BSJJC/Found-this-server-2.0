@@ -13,21 +13,19 @@ import { ObjectId } from "mongodb";
 const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
   try {
     const {
-      founder,
       founderName,
       founderAvaterID,
       title,
       text,
-      appendixIDs,
+      fileIDs,
     } = req.body;
 
     const topicInfo = await topicInfoModel.create({
-      founder,
       founderName,
       founderAvaterID,
       title,
       text,
-      appendixIDs,
+      fileIDs,
       bgID: generateRandomTopicBd(),
       isDeleted: false,
     });

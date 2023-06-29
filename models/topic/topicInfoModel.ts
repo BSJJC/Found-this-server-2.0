@@ -1,45 +1,20 @@
 import { Schema, model } from "mongoose";
 
-type repliesOfReply = {
-  userID: string,
-  userAvaterID: string,
-  date: Date,
-  replyText: string,
-  likes: number,
-  dislikes: number,
-}
-
-
-type replyType = {
-  userID: string,
-  userAvaterID: string,
-  date: Date,
-  replyText: string,
-  likes: number,
-  dislikes: number,
-  repliesOfReply: Array<repliesOfReply>
-}
-
 interface topicInfoModel {
-  founder: string;
   founderName: string;
   founderAvaterID: string;
   title: string;
   text: string;
   bgID: string;
-  appendixIDs: Schema.Types.Array;
+  fileIDs: string[],
   isDeleted: boolean;
 
   likes: number;
   dislikes: number;
   views: number;
-  replies?: Array<replyType>
 }
 
 const topicInfoModelSchema = new Schema<topicInfoModel>({
-  founder: {
-    type: String,
-  },
   founderName: {
     type: String,
   },
@@ -55,7 +30,7 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
   bgID: {
     type: String,
   },
-  appendixIDs: {
+  fileIDs: {
     type: [String],
   },
   isDeleted: {
@@ -75,11 +50,6 @@ const topicInfoModelSchema = new Schema<topicInfoModel>({
     default: 0,
     min: 0,
     type: Number
-  },
-  replies: {
-    type: Number,
-    default: 0,
-    min: 0
   }
 });
 

@@ -10,10 +10,19 @@ import topicFileModel from "../../models/topic/topicFileModel";
  */
 const uploadTopicFile = asyncHandler(
   async (req: Request, res: Response) => {
+
+
+    async function block(time: number): Promise<void> {
+      return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    // await block(2000)
+
+
     try {
-      if (Math.random() > 1) {
-        throw new Error("TEST ERROR");
-      }
+      // if (Math.random() > 0.5) {
+      //   throw new Error("TEST ERROR");
+      // }
 
       if (!req.file) {
         throw new Error("Error uploading File");
