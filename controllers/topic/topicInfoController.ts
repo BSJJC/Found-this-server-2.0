@@ -43,7 +43,7 @@ const createTopicInfo = asyncHandler(async (req: Request, res: Response) => {
  * @access                              Public
  */
 const getTopicInfo = asyncHandler(async (req: Request, res: Response) => {
-  const topics = await topicInfoModel.find().sort({ _id: 1 }).limit(6);
+  const topics = await topicInfoModel.find().sort({ _id: 1 }).limit(20);
 
   res.status(200).send(topics);
 });
